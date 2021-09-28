@@ -1,0 +1,25 @@
+FROM node:14-alpine
+
+# install dependencies
+WORKDIR /app
+COPY package.json ./
+RUN yarn
+
+# Copy all local files into the image.
+COPY . .
+
+RUN yarn run build
+
+###
+# Only copy over the Node pieces we need
+# ~> Saves 35MB
+###
+FROM node:14-alpine
+
+
+WORKDIR /app
+COPY --from=0 /app .
+COPY . .
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["node", "./build"]

@@ -6,7 +6,7 @@ const config = {
 		target: '#svelte',
 		adapter: adapter({
 			out: 'build',
-			precompress: false,
+			precompress: true,
 			env: {
 				host: 'HOST',
 				port: 'PORT'

@@ -1,2 +1,19 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<svelte:head>
+    <title>Home</title>
+</svelte:head>
+
+<script>
+  import { Button, Modal } from "sveltestrap/src";
+  let isOpen = false;
+  const toggle = () => (isOpen = !isOpen);
+</script>
+
+<Button color="primary" on:click={toggle}>Hello World!</Button>
+<Modal body {isOpen} {toggle} header="Hello World!">
+  <p>There's a song that we're singing. Come on</p>
+  <img
+    src="https://i.ytimg.com/vi/NUJIRujygvY/hqdefault.jpg"
+    alt="Come on Get Happy"
+    class="img-fluid"
+  />
+</Modal>

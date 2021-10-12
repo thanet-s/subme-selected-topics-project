@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   backend:
+    container_name: subme-backend
     build:
       context: backend
       dockerfile: Dockerfile.production
@@ -8,16 +9,18 @@ services:
       - db
 
   frontend:
+    container_name: subme-frontend
     build:
       context: frontend
       dockerfile: Dockerfile.production
     depends_on:
       - backend
 
-  envoy:
+  proxy:
+    container_name: subme-proxy
     image: envoyproxy/envoy:v1.19.1
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./envoy-proxy-config.yaml:/etc/envoy/envoy.yaml
     depends_on:
@@ -25,6 +28,7 @@ services:
       - frontend
 
   db:
+    container_name: subme-db
     image: postgres:13-alpine
     restart: always
     environment:

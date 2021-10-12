@@ -1,40 +1,33 @@
-<header class="pb-4 text-gray-600 body-font">
-	<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-		<a href="#!" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+<header class="text-gray-50 body-font bg-gray-800">
+	<div class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+		<a href="/" class="flex title-font font-medium items-center text-gray-50 mb-4 md:mb-0 hover:text-red-600">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
+				class="w-10 h-10 text-white p-1 bg-red-600 rounded-full hover:bg-red-700"
 				fill="none"
-				stroke="currentColor"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
 				viewBox="0 0 24 24"
+				stroke="currentColor"
 			>
-				<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+				/>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+				/>
 			</svg>
-			<span class="ml-3 text-xl">Tailblocks</span>
+			<span class="ml-3 text-xl">Subme</span>
 		</a>
-		<nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-			<a href="#!" class="mr-5 hover:text-gray-900">First Link</a>
-			<a href="#!" class="mr-5 hover:text-gray-900">Second Link</a>
-			<a href="#!" class="mr-5 hover:text-gray-900">Third Link</a>
-			<a href="#!" class="mr-5 hover:text-gray-900">Fourth Link</a>
-		</nav>
-		<button
-			class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-			>Button
-			<svg
-				fill="none"
-				stroke="currentColor"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				class="w-4 h-4 ml-1"
-				viewBox="0 0 24 24"
-			>
-				<path d="M5 12h14M12 5l7 7-7 7" />
-			</svg>
-		</button>
+		<menu class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+			<a href="#!" class="mr-5 hover:text-red-600">First Link</a>
+			<a href="#!" class="mr-5 hover:text-red-600">Second Link</a>
+			<a href="#!" class="mr-5 hover:text-red-600">Third Link</a>
+			<a href="#!" class="mr-5 hover:text-red-600">Fourth Link</a>
+        </menu>
 	</div>
 </header>

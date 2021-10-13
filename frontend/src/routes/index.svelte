@@ -7,25 +7,21 @@
 	<title>Subme</title>
 </svelte:head>
 
-<section class="text-gray-600 body-font">
-	<div class="container px-5 py-24 mx-auto">
-		<div class="flex flex-wrap -m-4">
-			<div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-				<a class="block relative h-48 rounded overflow-hidden">
-					<div class="aspect-w-16 aspect-h-9">
-						<img
-							alt="ecommerce"
-							class="object-cover object-center w-full h-full block"
-							src="https://dummyimage.com/420x260"
-						/>
-					</div>
-				</a>
-				<div class="mt-4">
-					<h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-					<h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-					<p class="mt-1">$16.00</p>
-				</div>
+<div class="flex flex-wrap -m-4">
+	<div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+		<a href="#!" class="block relative rounded shadow-md overflow-hidden">
+			<div class="aspect-w-16 aspect-h-9">
+				<img
+					alt="he Catalyzer"
+					class="object-cover object-center w-full h-full block"
+					src="https://dummyimage.com/420x260"
+				/>
 			</div>
+		</a>
+		<div class="mt-1 ml-1">
+			<h2 class="text-gray-900 title-font text-lg font-medium">Me at Zoo</h2>
+			<p>Jojo</p>
+			<p class="text-gray-500 text-xs tracking-widest title-font mb-1">3 years ago</p>
 		</div>
 	</div>
-</section>
+</div>

@@ -24,7 +24,6 @@ services:
     volumes:
       - ./envoy-proxy-config.yaml:/etc/envoy/envoy.yaml
     depends_on:
-      - backend
       - frontend
 
   db:

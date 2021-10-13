@@ -1,14 +1,14 @@
 version: "3.9"
 services:
-  # backend:
-  #   container_name: subme-backend
-  #   build:
-  #     context: backend
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - './backend:/usr/src/subme-backend'
-    # depends_on:
-    #   - db
+  backend:
+    container_name: subme-backend
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    volumes:
+      - './backend:/code'
+    depends_on:
+      - db
 
   frontend:
     container_name: subme-frontend
@@ -17,16 +17,14 @@ services:
       dockerfile: Dockerfile
     volumes:
       - './frontend:/app'
+
+  proxy:
+    container_name: subme-proxy
+    image: envoyproxy/envoy:v1.19.1
     ports:
       - 3000:3000
-
-  # proxy:
-  #   container_name: subme-proxy
-  #   image: envoyproxy/envoy:v1.19.1
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./envoy-proxy-config.yaml:/etc/envoy/envoy.yaml
+    volumes:
+      - ./envoy-proxy-config.yaml:/etc/envoy/envoy.yaml
 
   # minio:
   #   image: quay.io/minio/minio:RELEASE.2021-09-24T00-24-24Z
@@ -47,23 +45,23 @@ services:
   #     timeout: 20s
   #     retries: 3
 
-  # db:
-  #   container_name: subme-db
-  #   image: postgres:13-alpine
-  #   restart: always
-  #   environment:
-  #     POSTGRES_PASSWORD: SgcYnDP8KJk2i76JEKvWX9OJW1gOWuRtrk7HeJrZu74=
-  #     POSTGRES_USER: subme
-  #     POSTGRES_DB: subme
-  #   volumes:
-  #     - 'db-data:/var/lib/postgresql/data'
+  db:
+    container_name: subme-db
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: SgcYnDP8KJk2i76JEKvWX9OJW1gOWuRtrk7HeJrZu74=
+      POSTGRES_USER: subme
+      POSTGRES_DB: subme
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
 
-  # adminer:
-  #   container_name: subme-db-admin
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 3001:8080
+  adminer:
+    container_name: subme-db-admin
+    image: adminer
+    restart: always
+    ports:
+      - 3001:8080
 
 volumes:
   db-data:

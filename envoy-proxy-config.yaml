@@ -29,8 +29,9 @@ static_resources:
               domains: ["*"]
               routes:
               - match:
-                  prefix: "/api/"
+                  prefix: "/backend/"
                 route:
+                  prefix_rewrite: "/"
                   cluster: service_backend
               - match:
                   prefix: "/"

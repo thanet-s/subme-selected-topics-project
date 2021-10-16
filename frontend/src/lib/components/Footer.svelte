@@ -12,7 +12,7 @@
 				</p>
 				<span
 					class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm"
-					>Selected Topic 2 Project</span
+					>Selected Topic 1 Project</span
 				>
 			</div>
 		</div>

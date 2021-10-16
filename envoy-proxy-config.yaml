@@ -26,7 +26,7 @@ static_resources:
             name: local_route
             virtual_hosts:
             - name: subme
-              domains: ["*"]
+              domains: ["localhost:3000"]
               routes:
               - match:
                   prefix: "/backend/"
@@ -34,10 +34,20 @@ static_resources:
                   prefix_rewrite: "/"
                   cluster: service_backend
               - match:
+                  prefix: "/bucket/cover/"
+                route:
+                  prefix_rewrite: "/cover/"
+                  cluster: service_bucket
+              - match:
+                  prefix: "/bucket/video/"
+                route:
+                  prefix_rewrite: "/video/"
+                  cluster: service_bucket
+              - match:
                   prefix: "/"
                 route:
                   cluster: service_frontend
-                  
+
   clusters:
   - name: service_backend
     connect_timeout: 10s
@@ -53,6 +63,21 @@ static_resources:
               socket_address:
                 address: backend
                 port_value: 4000
+
+  - name: service_bucket
+    connect_timeout: 100s
+    type: LOGICAL_DNS
+    # Comment out the following line to test on v6 networks
+    dns_lookup_family: V4_ONLY
+    load_assignment:
+      cluster_name: service_bucket
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: minio
+                port_value: 9000
 
   - name: service_frontend
     connect_timeout: 10s

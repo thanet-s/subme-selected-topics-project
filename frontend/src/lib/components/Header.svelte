@@ -1,3 +1,7 @@
+<script>
+	import { session } from '$app/stores';
+</script>
+
 <header class="text-gray-50 body-font bg-gray-800">
 	<div class="mx-auto flex flex-wrap px-5 py-3 flex-col md:flex-row items-center">
 		<a
@@ -27,8 +31,8 @@
 			<span class="ml-3 text-xl">Subme</span>
 		</a>
 		<div class="relative text-black">
-			<form action="GET">
-				<div class="absolute top-4 left-3">
+			<form>
+				<div class="absolute top-3 left-3">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-6 w-6 text-gray-400 z-20 hover:text-gray-500"
@@ -46,13 +50,14 @@
 				</div>
 				<input
 					type="text"
-					class="h-14 w-full md:w-96 pl-10 pr-20 rounded-lg z-0 focus:ring-2 focus:ring-red-600"
+					name="q"
+					class="h-12 w-full md:w-96 pl-10 pr-20 rounded-lg z-0 focus:ring-2 focus:ring-red-500"
 					placeholder="Search anything..."
 				/>
 				<div class="absolute top-0 right-0">
 					<button
 						type="submit"
-						class="h-14 w-20 text-white rounded-r-lg bg-red-500 hover:bg-red-600"
+						class="h-12 w-20 text-white rounded-r-lg bg-red-500 hover:bg-red-600"
 					>
 						Search
 					</button>
@@ -60,25 +65,47 @@
 			</form>
 		</div>
 		<nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-			<a href="/signin" class="flex flex-row items-center md:mr-5 hover:text-red-600">
-				<span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-						/>
-					</svg>
-				</span>
-				<span class="text-sm font-medium">Sign In</span></a
-			>
+			{#if !$session.user}
+				<a href="/signin" class="flex flex-row items-center md:mr-5 hover:text-red-600">
+					<span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+							/>
+						</svg>
+					</span>
+					<span class="text-sm font-medium">Sign In</span>
+				</a>
+			{:else}
+				<a href="/me" class="flex flex-row items-center md:mr-5 hover:text-red-600">
+					<span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+							/>
+						</svg>
+					</span>
+					<span class="text-lg font-medium">{$session.user.username}</span>
+				</a>
+			{/if}
 		</nav>
 	</div>
 </header>

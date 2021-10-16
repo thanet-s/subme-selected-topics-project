@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
     
 
-	let is_private = false;
+	let is_private = true;
 	let title = '';
 	let description = '';
 	let errors = null;

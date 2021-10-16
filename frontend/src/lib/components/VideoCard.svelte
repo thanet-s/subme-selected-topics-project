@@ -24,7 +24,7 @@
 				<img
 					alt="he Catalyzer"
 					class="object-cover object-center w-full h-full block"
-					src="https://dummyimage.com/420x260"
+					src={`http://localhost:3000/bucket/cover/${id}`}
 				/>
 			</div>
 		</a>

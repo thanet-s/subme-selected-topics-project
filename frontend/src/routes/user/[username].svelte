@@ -3,13 +3,14 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, stuff }) {
-		const url = `http://localhost:3000/backend/video/home`;
+		const url = `http://localhost:3000/backend/user/get-${page.params.username}`;
 		const res = await fetch(url);
 
 		if (res.ok) {
 			return {
 				props: {
-					videos: await res.json()
+					videos: await res.json(),
+                    username: page.params.username
 				}
 			};
 		}
@@ -24,10 +25,11 @@
 <script>
 	import VideoCard from '$lib/components/VideoCard.svelte';
 	export let videos;
+    export let username;
 </script>
 
 <svelte:head>
-	<title>Subme</title>
+	<title>{username}</title>
 </svelte:head>
 
 <div class="flex flex-wrap -m-4">

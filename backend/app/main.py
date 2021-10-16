@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
-from .routers import auth as auth_router, user
+from .routers import auth as auth_router, user, video
 
 
 app = FastAPI(title="Subme API")
@@ -23,6 +23,7 @@ app.add_middleware(
 
 app.include_router(auth_router.router)
 app.include_router(user.router)
+app.include_router(video.router)
 
 
 @app.get("/")

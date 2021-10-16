@@ -1,5 +1,12 @@
 <script>
 	import { session } from '$app/stores';
+	import { goto } from '$app/navigation';
+
+	let word = '';
+
+	const onSearch = e => {
+		goto(`/search/${word}`);
+	};
 </script>
 
 <header class="text-gray-50 body-font bg-gray-800">
@@ -31,7 +38,7 @@
 			<span class="ml-3 text-xl">Subme</span>
 		</a>
 		<div class="relative text-black">
-			<form>
+			<form on:submit|preventDefault={onSearch}>
 				<div class="absolute top-3 left-3">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +60,8 @@
 					name="q"
 					class="h-12 w-full md:w-96 pl-10 pr-20 rounded-lg z-0 focus:ring-2 focus:ring-red-500"
 					placeholder="Search anything..."
+					bind:value={word}
+					required
 				/>
 				<div class="absolute top-0 right-0">
 					<button

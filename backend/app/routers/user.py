@@ -1,12 +1,11 @@
 from fastapi import Depends, APIRouter, HTTPException, status, Response, File, Form, UploadFile
-from ..pydatic_models import User_Pydantic, Video_Pydantic
+from ..pydatic_models import User_Pydantic, Video_Pydantic, VideoCard_Pydantic
 from ..models import Users, Video
 from ..jwt import get_current_user, get_current_active_user
 from ..bucket import minio_client
-from datetime import timedelta
 import json
 from pydantic import BaseModel
-import os
+from typing import List
 
 router = APIRouter(
     prefix="/user",
@@ -17,6 +16,16 @@ router = APIRouter(
 @router.get("/me", response_model=User_Pydantic)
 async def read_users_me(current_user: Users = Depends(get_current_user)):
     return await User_Pydantic.from_tortoise_orm(current_user)
+
+
+@router.get("/videos", response_model=List[VideoCard_Pydantic])
+async def me_video(current_user: Users = Depends(get_current_user)):
+    return await VideoCard_Pydantic.from_queryset(Video.filter(user=current_user).order_by('-created_at'))
+
+
+@router.get("/get-{username}", response_model=List[VideoCard_Pydantic])
+async def me_video(username: str):
+    return await VideoCard_Pydantic.from_queryset(Video.filter(user__username=username).order_by('-created_at'))
 
 
 # class Upload_data(BaseModel):

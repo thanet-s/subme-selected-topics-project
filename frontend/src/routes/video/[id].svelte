@@ -28,6 +28,7 @@
 <div class="aspect-w-16 aspect-h-9">
 	<video width="100%" height="100%" controls autoplay>
 		<source src={`/bucket/video/${video.id}`} />
+		<track kind="captions">
 		Your browser does not support the video tag.
 	</video>
 </div>
